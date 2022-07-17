@@ -85,7 +85,7 @@ export class DynamoDBEventProcessor<TServer extends Server = Server>
               // create PubSub for this subscriber
               const pubSub = new ArrayPubSub([event]);
 
-              const options = await server.createGraphQLServerOptions(
+              const options = await server.createMyGraphQLServerOptions(
                 lambdaEvent as any,
                 lambdaContext,
                 {

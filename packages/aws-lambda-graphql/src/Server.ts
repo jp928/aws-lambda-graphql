@@ -206,7 +206,7 @@ export class Server<
     return this.subscriptionManager;
   }
 
-  public createGraphQLServerOptions(
+  public createMyGraphQLServerOptions(
     event: APIGatewayProxyEvent,
     context: LambdaContext,
     internal?: Omit<
@@ -541,7 +541,7 @@ export class Server<
             // this makes sure that if you invoke the event
             // and you use Context creator function
             // then it'll be called with $$internal context according to spec
-            const options = await this.createGraphQLServerOptions(
+            const options = await this.createMyGraphQLServerOptions(
               event,
               lambdaContext,
               {
@@ -612,7 +612,7 @@ export class Server<
         this.onError(e);
 
         return {
-          body: e.message || 'Internal server error',
+          body: (e as any)?.message || 'Internal server error',
           statusCode: 500,
         };
       }
