@@ -309,7 +309,7 @@ export class Server<
               } catch (err) {
                 const errorResponse = formatMessage({
                   type: SERVER_EVENT_TYPES.GQL_ERROR,
-                  payload: { message: err.message },
+                  payload: { message: (err as any)?.message },
                 });
 
                 await this.connectionManager.unregisterConnection(connection);
@@ -412,7 +412,7 @@ export class Server<
                 } catch (err) {
                   const errorResponse = formatMessage({
                     type: SERVER_EVENT_TYPES.GQL_ERROR,
-                    payload: { message: err.message },
+                    payload: { message: (err as any)?.message },
                   });
 
                   await this.connectionManager.sendToConnection(
